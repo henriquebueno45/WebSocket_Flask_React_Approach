@@ -36,3 +36,15 @@ export const startSimulation = () => {
     socket.emit('startSimulation');
   }
 };
+
+export const stopSimulation = () => {
+  if (socket) {
+    socket.emit('stopSimulation');
+  }
+};
+
+export const deleteNode = (nodeId) => {
+  if (socket) {
+    socket.emit('deleteNode', nodeId);
+  }
+};

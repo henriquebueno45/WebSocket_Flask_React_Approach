@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Node Network Simulator</h1>
+        <h1>Testando WebSocket com Reactflow</h1>
       </header>
       <main>
         <FlowChart />
