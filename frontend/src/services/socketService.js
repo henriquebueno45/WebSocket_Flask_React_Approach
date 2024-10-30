@@ -2,29 +2,37 @@ import io from 'socket.io-client';
 
 let socket;
 
-export const connectToSocket = (onUpdateCallback) => {
-  console.log('Attempting to connect to socket');
-  socket = io('http://localhost:5000');
+export const establishSocketConnection = (onUpdateCallback) => {
+  const socketUrl = 'http://localhost:5000';
+  const options = {
+    transports: ['websocket'],
+  };
+
+  socket = io(socketUrl, options);
 
   socket.on('connect', () => {
-    console.log('Connected to server');
+    console.log('Successfully connected to socket server');
   });
 
-  socket.on('updateSensorData', (msg) => {
-    console.log("Raw data received in socketService:", msg);
-    console.log("Type of received data:", typeof msg);
-    console.log("Temperature type:", typeof msg.temperature);
-    console.log("Humidity type:", typeof msg.humidity);
-    onUpdateCallback(msg);
-  });
-
-  socket.on('connect_error', (error) => {
-    console.log('Connection Error:', error);
+  socket.on('updateNodeData', (data) => {
+    onUpdateCallback(data);
   });
 };
 
 export const disconnectSocket = () => {
   if (socket) {
     socket.disconnect();
+  }
+};
+
+export const emitNodes = (nodes) => {
+  if (socket) {
+    socket.emit('updateNodes', nodes);
+  }
+};
+
+export const startSimulation = () => {
+  if (socket) {
+    socket.emit('startSimulation');
   }
 };

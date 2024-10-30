@@ -1,15 +1,15 @@
 import React from 'react';
-import SensorChart from './components/SensorChart';
+import FlowChart from './components/FlowChart';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Sensor Dashboard</h1>
+        <h1>Node Network Simulator</h1>
       </header>
       <main>
-        <SensorChart />
+        <FlowChart />
       </main>
     </div>
   );
